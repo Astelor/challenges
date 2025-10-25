@@ -116,7 +116,8 @@ iVar2 = strncmp((char *)(*(long *)(*(long *)(unaff_RBP + -0xb0) + 8) + 9),"UD2",
 The full decompiled code for one of the sections of `strcmp` looks like this:
 ![full screenshot for strcmp](Screenshot_2025-10-25_12_10_07.png)
 
-Because we can see `unaff_RBP` is from `MOV    RAX,qword ptr [RBP + -0xb0]` and `ADD    RAX,0x8`, we can conclude that the input argument string is stored at this address, so the string in the `printf` function that prints the flag is the input string we entered.
+
+From `*(long *)(unaff_RBP + -0xb0) +8` in the `strcmp` code, we can tell this decompiled code correspond directly to the following instructions: `MOV    RAX, qword ptr [RBP + -0xb0]` and `ADD    RAX,0x8`. We can conclude that the input argument string is stored at this address, and we can see the same set of instructions in the "`printf`" section, so the string in the `printf` function that prints the flag is the input string we entered.
 
 Code section that prints the flag:
 ```
